@@ -148,7 +148,7 @@ func createRoundTripper(cfg *dynamic.ServersTransport) (http.RoundTripper, error
 		}
 	}
 
-	return newSmartRoundTripper(transport)
+	return newSmartRoundTripper(transport, cfg.DisableHTTP2)
 }
 
 func createRootCACertPool(rootCAs []traefiktls.FileOrContent) *x509.CertPool {
