@@ -102,6 +102,9 @@ Entry points definition. (Default: ```false```)
 `TRAEFIK_ENTRYPOINTS_<NAME>_ADDRESS`:  
 Entry point address.
 
+`TRAEFIK_ENTRYPOINTS_<NAME>_ENABLEHTTP3`:  
+Enable HTTP3. (Default: ```false```)
+
 `TRAEFIK_ENTRYPOINTS_<NAME>_FORWARDEDHEADERS_INSECURE`:  
 Trust all forwarded headers. (Default: ```false```)
 
@@ -118,7 +121,7 @@ Default middlewares for the routers linked to the entry point.
 Applies a permanent redirection. (Default: ```true```)
 
 `TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_REDIRECTIONS_ENTRYPOINT_PRIORITY`:  
-Priority of the generated router. (Default: ```2147483647```)
+Priority of the generated router. (Default: ```2147483646```)
 
 `TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_REDIRECTIONS_ENTRYPOINT_SCHEME`:  
 Scheme used for the redirection. (Default: ```https```)
@@ -135,10 +138,10 @@ Default certificate resolver for the routers linked to the entry point.
 `TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_TLS_DOMAINS`:  
 Default TLS domains for the routers linked to the entry point.
 
-`TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_TLS_DOMAINS[n]_MAIN`:  
+`TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_TLS_DOMAINS_n_MAIN`:  
 Default subject name.
 
-`TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_TLS_DOMAINS[n]_SANS`:  
+`TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_TLS_DOMAINS_n_SANS`:  
 Subject alternative names.
 
 `TRAEFIK_ENTRYPOINTS_<NAME>_HTTP_TLS_OPTIONS`:  
@@ -168,11 +171,17 @@ ReadTimeout is the maximum duration for reading the entire request, including th
 `TRAEFIK_ENTRYPOINTS_<NAME>_TRANSPORT_RESPONDINGTIMEOUTS_WRITETIMEOUT`:  
 WriteTimeout is the maximum duration before timing out writes of the response. If zero, no timeout is set. (Default: ```0```)
 
+`TRAEFIK_ENTRYPOINTS_<NAME>_UDP_TIMEOUT`:  
+Timeout defines how long to wait on an idle session before releasing the related resources. (Default: ```3```)
+
 `TRAEFIK_EXPERIMENTAL_DEVPLUGIN_GOPATH`:  
 plugin's GOPATH.
 
 `TRAEFIK_EXPERIMENTAL_DEVPLUGIN_MODULENAME`:  
 plugin's module name.
+
+`TRAEFIK_EXPERIMENTAL_HTTP3`:  
+Enable HTTP3. (Default: ```false```)
 
 `TRAEFIK_EXPERIMENTAL_KUBERNETESGATEWAY`:  
 Allow the Kubernetes gateway api provider usage. (Default: ```false```)
@@ -367,7 +376,7 @@ Expose containers by default. (Default: ```true```)
 Prefix for consul service tags. Default 'traefik' (Default: ```traefik```)
 
 `TRAEFIK_PROVIDERS_CONSULCATALOG_REFRESHINTERVAL`:  
-Interval for check Consul API. Default 100ms (Default: ```15```)
+Interval for check Consul API. Default 15s (Default: ```15```)
 
 `TRAEFIK_PROVIDERS_CONSULCATALOG_REQUIRECONSISTENT`:  
 Forces the read to be fully consistent. (Default: ```false```)

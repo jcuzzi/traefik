@@ -124,7 +124,7 @@ Attach labels to your containers and let Traefik do the rest!
     !!! important "Labels in Docker Swarm Mode"
         While in Swarm Mode, Traefik uses labels found on services, not on individual containers.
         Therefore, if you use a compose file with Swarm Mode, labels should be defined in the `deploy` part of your service.
-        This behavior is only enabled for docker-compose version 3+ ([Compose file reference](https://docs.docker.com/compose/compose-file/#labels-1)).
+        This behavior is only enabled for docker-compose version 3+ ([Compose file reference](https://docs.docker.com/compose/compose-file/compose-file-v3/#labels-1)).
 
 ## Routing Configuration
 
@@ -283,6 +283,14 @@ you'd add the label `traefik.http.services.<name-of-your-choice>.loadbalancer.pa
 
     ```yaml
     - "traefik.http.services.myservice.loadbalancer.server.scheme=http"
+    ```
+
+??? info "`traefik.http.services.<service_name>.loadbalancer.serverstransport`"
+
+    See [serverstransport](../services/index.md#serverstransport) for more information.
+
+    ```yaml
+    - "traefik.http.services.<service_name>.loadbalancer.serverstransport=foobar"
     ```
 
 ??? info "`traefik.http.services.<service_name>.loadbalancer.passhostheader`"

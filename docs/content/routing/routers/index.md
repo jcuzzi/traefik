@@ -235,7 +235,7 @@ The table below lists all the available matchers:
 | ```Host(`example.com`, ...)```                                         | Check if the request domain (host header value) targets one of the given `domains`.                            |
 | ```HostHeader(`example.com`, ...)```                                   | Check if the request domain (host header value) targets one of the given `domains`.                            |
 | ```HostRegexp(`example.com`, `{subdomain:[a-z]+}.example.com`, ...)``` | Check if the request domain matches the given `regexp`.                                                        |
-| ```Method(`GET`, ...)```                                               | Check if the request method is one of the given `methods` (`GET`, `POST`, `PUT`, `DELETE`, `PATCH`)            |
+| ```Method(`GET`, ...)```                                               | Check if the request method is one of the given `methods` (`GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD`)            |
 | ```Path(`/path`, `/articles/{cat:[a-z]+}/{id:[0-9]+}`, ...)```         | Match exact request path. It accepts a sequence of literal and regular expression paths.                       |
 | ```PathPrefix(`/products/`, `/articles/{cat:[a-z]+}/{id:[0-9]+}`)```   | Match request prefix path. It accepts a sequence of literal and regular expression prefix paths.               |
 | ```Query(`foo=bar`, `bar=baz`)```                                      | Match Query String parameters. It accepts a sequence of key=value pairs.                                       |
@@ -982,8 +982,9 @@ So UDP "routers" at this time are pretty much only load-balancers in one form or
 	It basically means that some state is kept about an ongoing communication between a client and a backend,
 	notably so that the proxy knows where to forward a response packet from a backend.
 	As expected, a `timeout` is associated to each of these sessions,
-	so that they get cleaned out if they go through a period of inactivity longer than a given duration (that is hardcoded to 3 seconds for now).
-	Making this timeout configurable will be considered later if we get more usage feedback on this matter.
+	so that they get cleaned out if they go through a period of inactivity longer than a given duration. 
+	Timeout can be configured using the `entryPoints.name.udp.timeout` option as described 
+	under [entry points](../entrypoints/#udp-options).
 
 ### EntryPoints
 
